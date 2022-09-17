@@ -16,7 +16,7 @@ module.exports = () => {
             console.warn('No REST auth');
             throw {
               status: 403,
-              message: 'AuthError',
+              message: 'No REST auth',
             };
           }
         }
