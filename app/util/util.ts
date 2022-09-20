@@ -1,12 +1,12 @@
-import { createHash, createDecipher } from 'crypto';
+import { createHash, createDecipher, createCipher } from 'crypto';
 import AWS from 'aws-sdk';
 
 const secretkey = 'password';
-// function encrypt(content) {
-//   const cipher = createCipher('aes192', secretkey);
-//   let enc = cipher.update(content, 'utf8', 'hex');
-//   return (enc += cipher.final('hex'));
-// }
+export function encrypt(content) {
+  const cipher = createCipher('aes192', secretkey);
+  let enc = cipher.update(content, 'utf8', 'hex');
+  return (enc += cipher.final('hex'));
+}
 export function decrypt(enc) {
   const decipher = createDecipher('aes192', secretkey);
   let dec = decipher.update(enc, 'hex', 'utf8');
@@ -21,11 +21,11 @@ export const picS3Config = {
   secretAccessKey: '6674d05d419c70d51624d98a238c306465303d9d7bd735cd6803d76ec172e8ff8254843ca6ace16b144c876aa737ece4',
 };
 export const videoS3Config = {
-  domain: 'newhire-video-source71e471f1-13mh24jfdfdgc.s3.amazonaws.com',
-  bucketName: 'newhire-video-source71e471f1-13mh24jfdfdgc',
+  domain: 'newhire-video-source71e471f1-1eg2v2deymw02.s3.amazonaws.com',
+  bucketName: 'newhire-video-source71e471f1-1eg2v2deymw02',
   path: 'assets01/',
-  accessKeyId: 'c7e71b3497b616a31d28a7bc502828b61d7e24e32377795dfa84a545ab70c53a',
-  secretAccessKey: 'ffd3da006315ee96efbfa9bd1c08e5503272634a8710a3a3614b087fb4a93cb183452ecbb9b44649c0819ffe94422d42',
+  accessKeyId: '65d7eb39fc0f384927218fbdabdb0f355c8926b8729a73f3d1835c9dd8cd88ee',
+  secretAccessKey: '8abe0fbf7c5da56b39023dd09b1203dfea0e3e92e359cce590c2e18ce53eb769aee0de1926cf7e540bebdee371e3d4eb',
 };
 
 export const authToken = {};

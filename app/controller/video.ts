@@ -80,6 +80,7 @@ export default class VideoController extends Controller {
     const body = request.body;
     try {
       const obj = JSON.parse(body);
+      console.log('uploadCallback body:', obj);
       const message = obj.Message;
       console.log('uploadCallback message:', message);
       const messageObj = JSON.parse(message);

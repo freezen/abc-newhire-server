@@ -1,4 +1,6 @@
 import AWS from 'aws-sdk';
+export declare function encrypt(content: any): string;
+export declare function decrypt(enc: any): string;
 export declare const picS3Config: {
     domain: string;
     bucketName: string;
