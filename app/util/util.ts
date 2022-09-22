@@ -28,17 +28,23 @@ export const videoS3Config = {
   secretAccessKey: '8abe0fbf7c5da56b39023dd09b1203dfea0e3e92e359cce590c2e18ce53eb769aee0de1926cf7e540bebdee371e3d4eb',
 };
 
+const EXPIRE_LIMIT = 24 * 60 * 60 * 1000;
+
 export const authToken = {};
 
 export const getHash = (text: string, hashtype = 'md5') => createHash(hashtype).update(text).digest('hex');
 
 export const genToken = (name: string, pwd: string) => {
   const token = createHash('md5').update(name + pwd + Date.now()).digest('hex');
-  authToken[name] = token;
-  return token;
+  const expireTime = Date.now() + EXPIRE_LIMIT;
+  authToken[name] = {
+    token,
+    expireTime,
+  };
+  return authToken[name];
 };
 export const checkToken = (key: string, token: string) => {
-  if (authToken[key] === token) {
+  if (authToken[key]?.token === token && Date.now() < authToken[key]?.expireTime) {
     return true;
   }
   return false;

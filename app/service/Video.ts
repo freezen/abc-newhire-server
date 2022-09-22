@@ -38,7 +38,7 @@ export default class Video extends Service {
         const res = await app.mysql.query(sql, [ userid, pageNo * size, size ]);
         return res;
       }
-      const sql = `select v.id, v.name,u.name as uname,v.pic, v.url, COUNT(DISTINCT(f.id)) as likes from video v left join users u on v.uploader_id = u.id left join favorite f on f.video_id = v.id group by v.id ${sort ? 'order by likes desc' : ''} limit ?,?`;
+      const sql = `select v.id, v.name,u.name as uname,v.pic, v.url, f.user_id as userid, COUNT(DISTINCT(f.id)) as likes from video v left join users u on v.uploader_id = u.id left join favorite f on f.video_id = v.id group by v.id ${sort ? 'order by likes desc' : ''} limit ?,?`;
       const res = await app.mysql.query(sql, [ pageNo * size, size ]);
       return res;
     } catch (e) {

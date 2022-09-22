@@ -2,6 +2,7 @@ import { checkToken } from '../util/util';
 
 module.exports = () => {
   return async function tokenAuth(ctx, next) {
+    console.log('123');
     try {
       const whiteList = [
         '/login',
@@ -11,8 +12,10 @@ module.exports = () => {
       ];
       const { request } = ctx;
       const { header, url } = request;
+      console.log('123=', url);
+
       const path = url.split('?')[0];
-      console.log('!whiteList.includes(path):', !whiteList.includes(path), path);
+      console.log('!whiteList.includes(path): ', !whiteList.includes(path), path);
       if ((!checkToken(header.key, header.token) || !header.token) && url !== '' && path !== '/uploadCallback' && !whiteList.includes(path)) {
         console.warn('No token auth');
         ctx.body = {

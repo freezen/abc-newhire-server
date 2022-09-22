@@ -16,6 +16,6 @@ export declare const videoS3Config: {
 };
 export declare const authToken: {};
 export declare const getHash: (text: string, hashtype?: string) => string;
-export declare const genToken: (name: string, pwd: string) => string;
+export declare const genToken: (name: string, pwd: string) => any;
 export declare const checkToken: (key: string, token: string) => boolean;
 export declare const upload2S3: (filename: any, stream: any, config: any) => Promise<AWS.S3.ManagedUpload.SendData>;

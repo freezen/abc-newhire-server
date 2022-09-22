@@ -18,7 +18,8 @@ export default class AdminController extends Controller {
       // generate the token & save in runtime
       const t = genToken(name, pwd);
       const userInfo = {
-        token: t,
+        token: t.token,
+        expireTime: t.expireTime,
         key: name,
         id: res[0].id,
         auth: res[0].name,
